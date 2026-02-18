@@ -1,0 +1,43 @@
+# 工作流名称
+name: 定时执行脚本
+
+# 触发条件：定时触发 + 手动触发（方便测试）
+on:
+  # 定时任务配置（UTC 时间）
+  schedule:
+    # 每天 UTC 00:40 执行（对应北京时间 8:40）
+    - cron: '40 0 * * *'
+  # 手动触发（在 GitHub 仓库的 Actions 页面可以手动运行）
+  workflow_dispatch:
+
+# 执行的任务
+jobs:
+  run-script:
+    # 运行的操作系统环境（选 Ubuntu 即可）
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉取仓库代码到运行环境
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      # 2. 设置 Python 环境（如果脚本是 Python 写的，非 Python 可跳过）
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # 选择你需要的 Python 版本
+
+      # 3. 安装依赖（如果脚本需要依赖包，非必需）
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          # 如果有 requirements.txt，执行下面的命令
+          # pip install -r requirements.txt
+          pip install requests
+
+      # 4. 执行脚本
+      - name: 运行脚本
+        run: |
+          # 替换成你的脚本执行命令，比如：
+          python push.py
+          # 如果是 Shell 脚本：bash your_script.sh
+          # 如果是 Node.js 脚本：node your_script.js
