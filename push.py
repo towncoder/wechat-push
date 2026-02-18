@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 class PushService:
 
     # 读取环境变量中的敏感信息
-    APPID = os.getenv("API_KEY")  # 对应 YAML 中的 env.API_KEY
-    SECRET = os.getenv("API_SECRET")
+    APPID = os.getenv("APP_ID")  # 对应 YAML 中的 env.API_KEY
+    SECRET = os.getenv("APP_SECRET")
 
     URL = "https://api.shadiao.pro/chp"
     TOKEN_URL = f"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={SECRET}"
