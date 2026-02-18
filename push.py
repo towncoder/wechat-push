@@ -11,8 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class PushService:
-    # APPID = "wx3c0d84c877eeaf9e"
-    # SECRET = "c444530dd829ac4c152701917b0d6804"
+
     # 读取环境变量中的敏感信息
     APPID = os.getenv("API_KEY")  # 对应 YAML 中的 env.API_KEY
     SECRET = os.getenv("API_SECRET")
@@ -165,5 +164,5 @@ if __name__ == "__main__":
     result_li = push_service.send_template_msg(open_id_li, template_id)
     print(f"发送结果: {result_li}")
 
-    # result_qi = push_service.send_template_msg(open_id_qi, template_id)
-    # print(f"发送结果: {result_qi}")
+    result_qi = push_service.send_template_msg(open_id_qi, template_id)
+    print(f"发送结果: {result_qi}")
