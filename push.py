@@ -4,14 +4,18 @@ import time
 from datetime import datetime
 from typing import Dict, Any, Optional
 import logging
+import os
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 class PushService:
-    APPID = "wx3c0d84c877eeaf9e"
-    SECRET = "c444530dd829ac4c152701917b0d6804"
+    # APPID = "wx3c0d84c877eeaf9e"
+    # SECRET = "c444530dd829ac4c152701917b0d6804"
+    # 读取环境变量中的敏感信息
+    APPID = os.getenv("API_KEY")  # 对应 YAML 中的 env.API_KEY
+    SECRET = os.getenv("API_SECRET")
 
     URL = "https://api.shadiao.pro/chp"
     TOKEN_URL = f"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={APPID}&secret={SECRET}"
