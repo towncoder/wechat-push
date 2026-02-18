@@ -5,7 +5,6 @@ name: 定时发送消息
 on:
   # 定时任务配置（UTC 时间）
   schedule:
-    # 每天 UTC 00:40 执行（对应北京时间 8:40）
     - cron: '14 0 * * *'
   # 手动触发（在 GitHub 仓库的 Actions 页面可以手动运行）
   workflow_dispatch:
